@@ -43,6 +43,51 @@ const textBillFactory = () => {
     }
 }
 
+const radioBillFactory = () => {
+    let callCost = 2.75
+    let callTotal = 0
+    let smsCost = 0.75
+    let smsTotal = 0
+    let warningLevel = 30
+    let criticalLevel = 50
+
+    // make call function
+    const makeCall = () => callTotal += callCost
+
+    // send sms function
+    const sendSms = () => smsTotal += smsCost
+
+    // get all total 
+    const getTotal = () => callTotal + smsTotal
+
+    // get call total
+    const getCallTotal = () => callTotal
+
+    // get the sms total
+    const getSmsTotal = () => smsTotal
+
+    // get warning level
+    const getWarningLevel = () => warningLevel
+
+    // get the critical level
+    const getCriticalLevel = () => criticalLevel
+
+    // which class should I use
+    const classTotal = () => {
+        if(getTotal() >= getCriticalLevel()) return "danger"
+        if(getTotal() >= getWarningLevel()) return "warning"
+    }
+
+    return {
+        classTotal,
+        makeCall,
+        sendSms,
+        getCallTotal,
+        getSmsTotal,
+        getTotal
+    }
+}
+
 const BillSettings = () => {
     
     // initialize me

@@ -1,21 +1,30 @@
-// get a reference to the sms or call radio buttons
-const radioBtn = document.querySelectorAll(".billItemTypeRadio");
-
 //get a reference to the add button
 const radioAddBtn = document.querySelector(".radioBillAddBtn");
 
-// where to display
-const callTotalTwo = document.querySelector(".callTotalTwo");
-const smsTotalTwo = document.querySelector(".smsTotalTwo");
-const totalTwo = document.querySelector(".totalTwo");
+// create instance of my factory function
+const radioBill = radioBillFactory()
 
-//create a variable that will keep track of the total bill
-let [radioTotal, radioSmsTotal, radioCallTotal] = [0, 0, 0];
+// create update template function
+const radioBillTemplate = () => {
+    // get a reference to the template script tag
+    var templateSource = document.querySelector(".radioTemplate").innerHTML;
 
-// reset the state of the fields
-callTotalTwo.innerHTML = radioCallTotal.toFixed(2);
-smsTotalTwo.innerHTML = radioSmsTotal.toFixed(2);
-totalTwo.innerHTML = radioTotal.toFixed(2);
+    // compile the template
+    var userTemplate = Handlebars.compile(templateSource);
+
+    // get a reference to tableBody where users is to be displayed
+    var userDataElem = document.querySelector(".radioData");
+
+    // use the compiled the template
+    var userDataHTML = userTemplate({
+        callCost: radioBill.getCallTotal().toFixed(2),
+        smsCost: radioBill.getSmsTotal().toFixed(2),
+        radioTotalCost: radioBill.getTotal().toFixed(2)
+    });
+    userDataElem.innerHTML = userDataHTML;
+}
+
+radioBillTemplate()
 
 //add an event listener for when the add button is pressed
 radioAddBtn.addEventListener("click", () => radioCalcBill());
@@ -25,24 +34,21 @@ radioAddBtn.addEventListener("click", () => radioCalcBill());
 // * add nothing for invalid values that is not 'call' or 'sms'.
 // * display the latest total on the screen
 const radioCalcBill = () => {
-    radioBtn.forEach(btn => {
-        if(btn.checked){
-            if(btn.value.toLowerCase().trim() === "sms") radioSmsTotal += 0.75;
-            if(btn.value.toLowerCase().trim() === "call") radioCallTotal += 2.75;
-            radioTotal = radioSmsTotal + radioCallTotal;
-            callTotalTwo.innerHTML = radioCallTotal.toFixed(2);
-            smsTotalTwo.innerHTML = radioSmsTotal.toFixed(2);
-            totalTwo.innerHTML = radioTotal.toFixed(2);
-
-            // change the color
-            radioBillMargin(radioTotal);
-        };
-    });
+    // get a reference to the sms or call radio buttons
+    const btn = document.querySelector(".billItemTypeRadio:checked");
+    
+    if(btn.checked){
+        if(btn.value.toLowerCase().trim() === "sms") radioBill.sendSms();
+        if(btn.value.toLowerCase().trim() === "call") radioBill.makeCall();
+        radioBillTemplate()
+        // change the color
+        radioBillMargin();
+    };
 };
 
 const radioBillMargin = bill => {
-    bill >= 50 && totalTwo.classList.add("danger"); 
-    bill >= 30 && totalTwo.classList.add("warning");
-    bill < 30 && totalTwo.classList.remove("warning");
-    bill < 30 && totalTwo.classList.remove("danger");
+    const totalTwo = document.querySelector(".totalTwo");
+    totalTwo.classList.remove("warning");
+    totalTwo.classList.remove("danger");
+    totalTwo.classList.add(radioBill.classTotal()); 
 }

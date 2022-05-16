@@ -153,18 +153,21 @@
             <div class="six columns">
                   <h5>Totals</h5>
                   <table>
-                    <tr>
-                      <td>Call total</td>
-                      <td>R<span class="callTotalTwo">34.50</span></td>
-                    </tr>
-                    <tr>
-                      <td>SMS total</td>
-                      <td>R<span class="smsTotalTwo">3.00</span></td>
-                    </tr>
-                    <tr >
-                      <td>Total</td>
-                      <td class="orange" >R<span class="totalTwo">37.50</span></td>
-                    </tr>
+                    <script type="text/x-template" class="radioTemplate">
+                      <tr>
+                        <td>Call total</td>
+                        <td>R<span class="callTotalTwo">{{callCost}}</span></td>
+                      </tr>
+                      <tr>
+                        <td>SMS total</td>
+                        <td>R<span class="smsTotalTwo">{{smsCost}}</span></td>
+                      </tr>
+                      <tr >
+                        <td>Total</td>
+                        <td class="orange" >R<span class="totalTwo">{{radioTotalCost}}</span></td>
+                      </tr>
+                    </script>
+                    <tbody class="radioData"></tbody>
                   </table>
             </div>
           </div>
