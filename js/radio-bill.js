@@ -12,7 +12,7 @@ const radioBillTemplate = () => {
     // compile the template
     var userTemplate = Handlebars.compile(templateSource);
 
-    // get a reference to tableBody where users is to be displayed
+    // get a reference to tableBody where totals is to be displayed
     var userDataElem = document.querySelector(".radioData");
 
     // use the compiled the template

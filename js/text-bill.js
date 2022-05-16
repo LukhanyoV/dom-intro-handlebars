@@ -7,7 +7,7 @@ const addToBillBtn = document.querySelector(".addToBillBtn");
 // make instance of my text bill factory function
 const textBill = textBillFactory()
 
-// create update template function
+// create update template function for radio bill widget
 const textBillTemplate = () => {
     // get a reference to the template script tag
     var templateSource = document.querySelector(".userTemplate").innerHTML;
@@ -15,7 +15,7 @@ const textBillTemplate = () => {
     // compile the template
     var userTemplate = Handlebars.compile(templateSource);
 
-    // get a reference to tableBody where users is to be displayed
+    // get a reference to tableBody where the totals is to be displayed
     var userDataElem = document.querySelector(".userData");
 
     // use the compiled the template
