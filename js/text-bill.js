@@ -7,9 +7,6 @@ const addToBillBtn = document.querySelector(".addToBillBtn");
 // make instance of my text bill factory function
 const textBill = textBillFactory()
 
-//create a variable that will keep track of the total bill
-let [total, callTotal, smsTotal] = [textBill.getTotal(), textBill.getCallTotal(), textBill.getSmsTotal()];
-
 // create update template function
 const textBillTemplate = () => {
     // get a reference to the template script tag
