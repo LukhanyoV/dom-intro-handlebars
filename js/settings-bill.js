@@ -16,7 +16,7 @@ const updateSettings = document.querySelector(".updateSettings");
 // instancce of my factory function
 const settingsBill = BillSettings();
 
-// create update template function for radio bill widget
+// create update template function for settings bill widget
 const settingsBillTemplate = () => {
     // get a reference to the template script tag
     var templateSource = document.querySelector(".settingsTemplate").innerHTML;
