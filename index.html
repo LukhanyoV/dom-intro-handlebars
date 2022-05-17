@@ -204,18 +204,21 @@
 
               <h5>Totals</h5>
                   <table>
-                    <tr>
-                      <td>Call total</td>
-                      <td>R<span class="callTotalSettings">34.00</span> </td>
-                    </tr>
-                    <tr>
-                      <td>SMS total</td>
-                      <td>R<span class="smsTotalSettings">7.35</span> </td>
-                    </tr>
-                    <tr>
-                      <td>Total</td>
-                      <td> R<span class="totalSettings">41.35</span> </td>
-                    </tr>
+                    <script type="text/x-template" class="settingsTemplate">
+                      <tr>
+                        <td>Call total</td>
+                        <td>R<span class="callTotalSettings">{{callCost}}</span> </td>
+                      </tr>
+                      <tr>
+                        <td>SMS total</td>
+                        <td>R<span class="smsTotalSettings">{{smsCost}}</span> </td>
+                      </tr>
+                      <tr>
+                        <td>Total</td>
+                        <td> R<span class="totalSettings">{{settingsTotalCost}}</span> </td>
+                      </tr>
+                    </script>
+                    <tbody class="settingsData"></tbody>
                   </table>
 
             </div>

@@ -123,7 +123,10 @@ const BillSettings = () => {
     const getTotalCost = () => totalCost = getSmsCostTotal() + getCallCostTotal();
 
     // color me
-    const classTotal = () => getTotalCost() >= getCriticalLevel() ? "critical" : getTotalCost() >= getWarningLevel() && "warning";
+    const classTotal = () => {
+        if(getTotalCost() >= getCriticalLevel()) return "danger"
+        if(getTotalCost() >= getWarningLevel()) return "warning"
+    }
 
     return {
         setCallCost,

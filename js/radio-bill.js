@@ -46,7 +46,7 @@ const radioCalcBill = () => {
     };
 };
 
-const radioBillMargin = bill => {
+const radioBillMargin = () => {
     const totalTwo = document.querySelector(".totalTwo");
     totalTwo.classList.remove("warning");
     totalTwo.classList.remove("danger");
